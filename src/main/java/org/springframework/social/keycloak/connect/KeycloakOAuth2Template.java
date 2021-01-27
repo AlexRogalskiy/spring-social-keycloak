@@ -1,7 +1,7 @@
 package org.springframework.social.keycloak.connect;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.social.oauth2.OAuth2Template;
  
 import java.util.Map;
@@ -16,7 +16,7 @@ import org.springframework.util.MultiValueMap;
 
 public class KeycloakOAuth2Template extends OAuth2Template{
 	
-	//private final Logger log = LoggerFactory.getLogger(WSO2ISOAuth2Template.class);
+	private final Logger log = LoggerFactory.getLogger(KeycloakOAuth2Template.class);
 	 
 	public KeycloakOAuth2Template(String clientId, String clientSecret,
 			String authorizeUrl, String accessTokenUrl) {

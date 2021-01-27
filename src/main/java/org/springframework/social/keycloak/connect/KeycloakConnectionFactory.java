@@ -1,7 +1,7 @@
 package org.springframework.social.keycloak.connect;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.support.OAuth2ConnectionFactory;
@@ -11,8 +11,7 @@ import org.springframework.social.oauth2.OAuth2ServiceProvider;
 
 public class KeycloakConnectionFactory extends OAuth2ConnectionFactory<Keycloak> {
 
-	// private final Logger log =
-	// LoggerFactory.getLogger(WSO2ISConnectionFactory.class);
+	private final Logger log = LoggerFactory.getLogger(KeycloakConnectionFactory.class);
 	private boolean useStateParameter = true;
 
 	/**
@@ -21,7 +20,12 @@ public class KeycloakConnectionFactory extends OAuth2ConnectionFactory<Keycloak>
 	 * @param clientSecret
 	 */
 	public KeycloakConnectionFactory(String baseUrl, String clientId, String clientSecret) {
+		
 		super("keycloak", new KeycloakServiceProvider(baseUrl, clientId, clientSecret), new KeycloakAdapter());
+		if(baseUrl==null) {
+			throw new RuntimeException("Keycloak base-url not set");
+		}
+		log.debug("Done with initializing Keycloak Connection Factory");
 	}
 
 	/**
@@ -33,6 +37,7 @@ public class KeycloakConnectionFactory extends OAuth2ConnectionFactory<Keycloak>
 	public KeycloakConnectionFactory(String baseUrl, String clientId, String clientSecret, boolean useStateParameter) {
 		super("keycloak", new KeycloakServiceProvider(baseUrl, clientId, clientSecret), new KeycloakAdapter());
 		this.useStateParameter = useStateParameter;
+		log.debug("Done with initializing Keycloak Connection Factory");
 
 	}
 
